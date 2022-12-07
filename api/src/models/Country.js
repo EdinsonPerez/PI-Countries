@@ -6,6 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define('country', {
     id:  {
       type: DataTypes.STRING(3),
+      allowNull: false,
       primaryKey: true,
       validate: {
         len: [3]
@@ -21,11 +22,11 @@ module.exports = (sequelize) => {
     },
     continente: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     capital: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     subregion: {
       type: DataTypes.STRING,
