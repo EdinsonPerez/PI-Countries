@@ -1,25 +1,32 @@
 const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
+const {Country, Activity} = require('../db')
+const axios = require('axios')
 
 
 const router = Router();
 
-router.get('/', (req, res, next) => {
-    res.send('soy get /activity')
-})
+router.post('/', async (req, res, next) => {
+    try {
+        let { name, description, difficulty, duration, season, createInDb, country } = req.body;
+        let activityCreated = await Activity.create({
+            name,
+            description,
+            difficulty,
+            duration,
+            season,
+            createInDb
+        })
+        let countryDb = await Country.findAll({
+            where: { name : country }
+        })
+        activityCreated.addCountry(countryDb)
+        res.send('Actividad creada con exito')
+    } catch(error){
+        next(error)
+        }
+       
+});
 
-router.post('/', (req, res, next) => {
-    res.send('soy post /activity')
-})
-
-router.put('/', (req, res, next) => {
-    res.send('soy put /activity')
-})
-
-router.delete('/', (req, res, next) => {
-    res.send('soy delete /activity')
-})
 
 
 module.exports = router;

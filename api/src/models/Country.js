@@ -12,15 +12,15 @@ module.exports = (sequelize) => {
         len: [3]
       }
     },
-    nombre: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    imagen_bandera: {
+    flags: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true,
     },
-    continente: {
+    continent: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -32,9 +32,9 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     area: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
     },
-    poblacion: {
+    population: {
       type: DataTypes.INTEGER,
     }
   },
