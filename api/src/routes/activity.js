@@ -15,9 +15,9 @@ router.post('/', async (req, res, next) => {
             duration,
             season,
             createInDb
-        })
+        });
         let countryDb = await Country.findAll({
-            where: { name : country }
+            where: { name : country },
         })
         activityCreated.addCountry(countryDb)
         res.send('Actividad creada con exito')
